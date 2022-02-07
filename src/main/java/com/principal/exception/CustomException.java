@@ -11,5 +11,4 @@ public class CustomException extends Throwable {
         this.time = time;
     }
 
-
 }
