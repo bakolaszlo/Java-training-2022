@@ -1,5 +1,6 @@
 package com.principal.training;
 
+import com.principal.api.Person;
 import com.principal.exception.CustomException;
 
 import java.io.BufferedReader;
@@ -20,5 +21,9 @@ public class DemoClass {
             e.printStackTrace();
             throw new CustomException("Custom exception", LocalDateTime.now());
         }
+    }
+
+    public String retrievePersonName(Person person){
+        return person.computeName();
     }
 }

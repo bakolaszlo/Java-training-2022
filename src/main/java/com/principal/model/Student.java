@@ -1,6 +1,8 @@
 package com.principal.model;
 
-public class Student {
+import com.principal.api.Person;
+
+public class Student implements Person {
     private String studentName;
     private int age;
 
@@ -20,4 +22,19 @@ public class Student {
         return age;
     }
 
+    public int getComputedAge(int age){
+        var ageComputed = ++age;
+        var studentNameComputed = studentName + "something";
+        return ageComputed;
+    }
+
+    @Override
+    public String computeName() {
+        return null;
+    }
+
+    @Override
+    public int computeAge() {
+        return 0;
+    }
 }
