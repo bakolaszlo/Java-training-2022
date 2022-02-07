@@ -1,3 +1,5 @@
+package com.principal.exception;
+
 import java.time.LocalDateTime;
 
 public class CustomException extends Throwable {
@@ -8,4 +10,6 @@ public class CustomException extends Throwable {
         this.cause = cause;
         this.time = time;
     }
+
+
 }
