@@ -103,13 +103,10 @@ public class StudentIO {
 
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 
-            // parse XML file
             DocumentBuilder db = dbf.newDocumentBuilder();
 
             Document doc = db.parse(new File(fileName));
 
-            // optional, but recommended
-            // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
             doc.getDocumentElement().normalize();
 
             System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
