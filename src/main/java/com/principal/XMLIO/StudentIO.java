@@ -26,28 +26,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 public class StudentIO {
-    private List<Student> studentList;
-    private final String fileName;
 
-    {studentList = generateStudentList();}
-
-    public StudentIO(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public List<Student> generateStudentList() {
-        List<Student> studentList = new ArrayList<>();
-
-        studentList.add(new Student("Student1 - generated",25));
-        studentList.add(new Student("Student2",32));
-
-        return studentList;
-    }
-
-    public void writeStudents() throws ParserConfigurationException, TransformerException {
+    public static void writeStudents(final String filename, final List<Student> studentList) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
@@ -71,7 +52,7 @@ public class StudentIO {
 
         // write dom document to a file
         try (FileOutputStream output =
-                     new FileOutputStream(this.fileName)) {
+                     new FileOutputStream(filename)) {
             writeXml(doc, output);
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,8 +60,8 @@ public class StudentIO {
     }
 
     // write doc to output stream
-    private static void writeXml(Document doc,
-                                 OutputStream output)
+    private static void writeXml(final Document doc,
+                                 final OutputStream output)
             throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -95,7 +76,7 @@ public class StudentIO {
         transformer.transform(source, result);
     }
 
-    public void readStudents() {
+    public static void readStudents(final String filename) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
 
@@ -103,7 +84,7 @@ public class StudentIO {
 
             DocumentBuilder db = dbf.newDocumentBuilder();
 
-            Document doc = db.parse(new File(fileName));
+            Document doc = db.parse(new File(filename));
 
             doc.getDocumentElement().normalize();
 
@@ -120,12 +101,20 @@ public class StudentIO {
                     Element element = (Element) node;
 
                     String studentName = element.getElementsByTagName("studentName").item(0).getTextContent();
-                    String age = element.getElementsByTagName("age").item(0).getTextContent();
+                    var bio = element.getElementsByTagName("bio").item(0).getAttributes();
+                    String age = bio.getNamedItem("age").getTextContent();
+                    String place = bio.getNamedItem("place").getTextContent();
+                    String id = "";
 
-                    System.out.println("Student Name:" + studentName);
+                    if(element.getElementsByTagName("id").item(0) != null) {
+                        id = element.getElementsByTagName("id").item(0).getTextContent();
+                    }
+
+                    System.out.println("Student Name: " + studentName);
                     System.out.println("Student Age : " + age);
-
-                    studentList.add(new Student(studentName, Integer.parseInt(age)));
+                    System.out.println("Student place : " + place);
+                    System.out.println("Student Id  : " + id);
+                    System.out.println();
 
                 }
             }

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <university>
     <student>
-        <studentName>Student1</studentName>
-        <age>25</age>
+        <studentName>Student1 - static</studentName>
+        <bio age="25" place="Somewhere"/>
+        <id>92</id>
     </student>
     <student>
         <studentName>Student2</studentName>
-        <age>32</age>
+        <bio age="32" place="Somewhere1"/>
+        <id>93</id>
+    </student>
+    <student>
+        <studentName>Student3</studentName>
+        <bio age="18" place="Somewhere2"/>
     </student>
 </university>
