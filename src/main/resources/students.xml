@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<university>
+    <student>
+        <studentName>Student1 - generated</studentName>
+        <age>25</age>
+    </student>
+    <student>
+        <studentName>Student2</studentName>
+        <age>32</age>
+    </student>
+</university>

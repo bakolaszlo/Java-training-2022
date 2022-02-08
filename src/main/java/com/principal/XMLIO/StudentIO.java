@@ -1,6 +1,8 @@
 package com.principal.XMLIO;
 
 import com.principal.model.Student;
+import lombok.Getter;
+import lombok.Setter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,29 +26,25 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class StudentIO {
-    private List<Student> studentList = new ArrayList<Student>();
+    private List<Student> studentList;
     private final String fileName;
 
-    public StudentIO(String fileName, boolean generate) {
-        if(generate)
-        {
-            generateStudentList();
-        }
+    {studentList = generateStudentList();}
+
+    public StudentIO(String fileName) {
         this.fileName = fileName;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
-    }
+    public List<Student> generateStudentList() {
+        List<Student> studentList = new ArrayList<>();
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-    }
-
-    public void generateStudentList() {
-        studentList.add(new Student("Student1",25));
+        studentList.add(new Student("Student1 - generated",25));
         studentList.add(new Student("Student2",32));
+
+        return studentList;
     }
 
     public void writeStudents() throws ParserConfigurationException, TransformerException {
@@ -55,7 +53,7 @@ public class StudentIO {
 
         // root elements
         Document doc = docBuilder.newDocument();
-        Element rootElement = doc.createElement("University");
+        Element rootElement = doc.createElement("university");
         doc.appendChild(rootElement);
 
         for (var student:  studentList) {
