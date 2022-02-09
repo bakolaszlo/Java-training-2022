@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Mihai",
+    "location": {
+      "zipcode": "500501",
+      "country": "Romania",
+      "city": "Brasov"
+    },
+    "age": "21"
+  },
+  {
+    "name": "John Cena",
+    "location": {
+      "zipcode": "200052",
+      "country": "USA",
+      "city": "New York"
+    },
+    "age": "40"
+  }
+]
