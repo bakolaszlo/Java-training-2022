@@ -6,7 +6,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -45,12 +48,28 @@ public class JSONUtil {
 
     public static void writeJson(JSONArray studentList) throws IOException {
         try (FileWriter file = new FileWriter("src/main/resources/students.json")){
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            JsonParser jp = new JsonParser();
-            JsonElement je = jp.parse(studentList.toString());
-            String prettyJsonString = gson.toJson(je);
-            file.write(prettyJsonString);
+            file.write(prettyPrintJson(studentList.toString()));
             file.flush();
         }
+    }
+    public static void readJsonFile() throws IOException {
+
+        var parser = new JSONParser();
+        try(FileReader reader = new FileReader("src/main/resources/students.json")){
+            JSONArray students = (JSONArray) parser.parse(reader);
+            students.forEach(student -> {
+                var studentJson = (JSONObject) student;
+                System.out.print(studentJson.get("name").toString() + "\n");
+            });
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String prettyPrintJson(String uglyJsonString){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement je = jp.parse(uglyJsonString);
+        return gson.toJson(je);
     }
 }
