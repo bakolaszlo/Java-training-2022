@@ -1,14 +1,13 @@
-package com.principal.model.student;
+package com.principal.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.principal.model.Student;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentJUnitJupiterTests {
+public class StudentTest {
     private final Student student = new Student("Student",19);
 
     @Test
