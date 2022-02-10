@@ -10,8 +10,8 @@ public class XMLMain {
     public static void main(String[] args) throws ParserConfigurationException, TransformerException {
 
         List<Student> studentList = List.of(
-                new Student("Student1 - static",25),
-                new Student("Student2",32));
+                new Student("Student1", "Student",25),
+                new Student("Student2", "Student",32));
 
         //StudentIO.writeStudents("src/main/resources/students.xml", studentList);
         StudentIO.readStudents("src/main/resources/students.xml");

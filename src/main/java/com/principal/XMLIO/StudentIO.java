@@ -47,7 +47,7 @@ public class StudentIO {
             rootElement.appendChild(studentRoot);
 
             studentAge.setTextContent(String.valueOf(student.getAge()));
-            studentName.setTextContent(student.getStudentName());
+            studentName.setTextContent(student.computeName());
         }
 
         // write dom document to a file
