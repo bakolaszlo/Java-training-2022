@@ -6,16 +6,14 @@ import com.example.springboot.misc.EmployeeMapper;
 import com.example.springboot.model.Employee;
 import com.example.springboot.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.Mapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
@@ -25,12 +23,17 @@ public class EmployeeService {
     private final EmployeeMapper mapper;
 
     public List<EmployeeDTO> getAllEmployees() {
+        log.info("Return all employees");
         return mapper.employeeToEmployeeDTO(repo.findAll());
     }
 
-    public EmployeeDTO getEmployeeById(long id) { return mapper.employeeToEmployeeDTO(repo.findById(id).orElse(null)); }
+    public EmployeeDTO getEmployeeById(long id) {
+        log.info("Get employee by Id"+id);
+        return mapper.employeeToEmployeeDTO(repo.findById(id).orElse(null));
+    }
 
     public EmployeeDTO createEmployee(EmployeeDTO employee){
+        log.info("Create employee"+employee);
         return mapper.employeeToEmployeeDTO(repo.save(mapper.employeeDtoToEmployee(employee)));
     }
 

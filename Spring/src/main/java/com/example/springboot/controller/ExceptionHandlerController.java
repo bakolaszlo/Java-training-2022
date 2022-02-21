@@ -4,6 +4,7 @@ import com.example.springboot.exception.ResourcesNotFoundException;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -14,9 +15,15 @@ import java.util.Map;
 public class ExceptionHandlerController {
 
     @ExceptionHandler({ResourcesNotFoundException.class})
-    protected ResponseEntity<Object> handleResourceNotFound(RuntimeException ex){
+    protected ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex){
         final Map<String, Object> body = Map.of("Exception reason: ", ex.getMessage(), "Timestamp: ", LocalDateTime.now());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    protected ResponseEntity<Object> handleValidatorException(MethodArgumentNotValidException ex){
+        final Map<String, Object> body = Map.of("Exception reason: ", ex.getMessage(), "Timestamp: ", LocalDateTime.now());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
 }
