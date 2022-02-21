@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Java-Training-2022" />
+        <module name="JavaCore" />
       </profile>
     </annotationProcessing>
   </component>
