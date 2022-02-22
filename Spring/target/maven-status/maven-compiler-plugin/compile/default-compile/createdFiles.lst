@@ -1,5 +1,6 @@
 com\example\springboot\misc\EmployeeMapperImpl.class
 com\example\springboot\dto\EmployeeDTO.class
+com\example\springboot\Application.class
 com\example\springboot\controller\ExceptionHandlerController.class
 com\example\springboot\exception\ResourcesNotFoundException.class
 com\example\springboot\misc\EmployeeMapper.class

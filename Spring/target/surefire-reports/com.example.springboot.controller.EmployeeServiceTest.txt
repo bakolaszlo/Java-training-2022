@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.springboot.controller.EmployeeServiceTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in com.example.springboot.controller.EmployeeServiceTest
-createEmployeeTest  Time elapsed: 0 s  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "com.example.springboot.service.EmployeeService.createEmployee(com.example.springboot.dto.EmployeeDTO)" because "this.service" is null
-	at com.example.springboot.controller.EmployeeServiceTest.createEmployeeTest(EmployeeServiceTest.java:19)
-
